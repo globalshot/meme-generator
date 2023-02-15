@@ -62,9 +62,10 @@ document.getElementById('text-line').addEventListener('keyup',onChangeSetting)
 
 function onChangeSetting() {
         gCtxText.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height);
+        gCtxText.beginPath()
         setLineTxt(document.getElementById('text-line').value)
+        document.getElementById('color-btn').value = getTxtColor()
         // console.log(document.getElementById('text-line').value);
-        
         //should i just return gMeme.lines or no, mmmm
         var stringTitle = getLineTxt()
         gCtxText.fillStyle = getTxtColor()  //text color
@@ -73,14 +74,17 @@ function onChangeSetting() {
         // gCtxText  //font?
         gCtxText.font = `${getLineSize()}px ${font}`;//change ofc this
         //change the position otherwise it reset each time, i guess
-        gCtxText.fillText(stringTitle, gElCanvasText.width/3, getLineY())
+        gCtxText.fillText(stringTitle, getLineX(), getLineY())
+        gCtxText.closePath()
 }
 
 function showOtherLines(id) {//idk if i need id
     gCtxTextSaved.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height);
     for (let i = 0; i < gMemeLength(); i++) {
         if (i === id) continue
-        setLineTxt(gMeme.lines[i].txt)
+        gCtxTextSaved.beginPath()
+        setLineTxt(getLineTxt(i))
+        // setLineTxt(gMeme.lines[i].txt)
 
         // console.log('gMeme.lines[i].txt ---- ',getSpecificTxt(i));
         // setLineTxt(getSpecificTxt(i))
@@ -88,14 +92,15 @@ function showOtherLines(id) {//idk if i need id
         // console.log(document.getElementById('text-line').value);
         
         //should i just return gMeme.lines or no, mmmm
-        var stringTitle = getLineTxt()
-        gCtxTextSaved.fillStyle = getTxtColor()  //text color
+        var stringTitle = getLineTxt(i)
+        gCtxTextSaved.fillStyle = getTxtColor(i)  //text color
         // gCtxText  //alignment
         
         // gCtxText  //font?
-        gCtxTextSaved.font = `${getLineSize()}px ${font}`;//change ofc this
+        gCtxTextSaved.font = `${getLineSize(i)}px ${font}`;//change ofc this
         //change the position otherwise it reset each time, i guess
-        gCtxTextSaved.fillText(stringTitle, gElCanvasTextSaved.width/3, getLineY(i))
+        gCtxTextSaved.fillText(stringTitle, getLineX(i), getLineY(i))
+        gCtxText.closePath()
     }
 }
 

@@ -29,15 +29,17 @@ var gMeme = {
                 txt: 'I sometimes eat Falafel', 
                 size: 20, 
                 align: 'left', 
-                color: 'red',
+                color: '#000000',
                 lineY: 35,
+                lineX: 30
             },
             { 
                 txt: '2nd line', 
                 size: 20, 
                 align: 'left', 
-                color: 'red',
+                color: '#000000',
                 lineY: 350,
+                lineX: 30
             } 
     ] 
 }
@@ -58,29 +60,31 @@ function setLineTxt(text) {
     gMeme.lines[gMeme.selectedLineIdx].txt = text
 }
 
-function getLineTxt() {
-    return gMeme.lines[gMeme.selectedLineIdx].txt
-}
 
-function getSpecificTxt(num) {
+function getLineTxt(num = gMeme.selectedLineIdx) {
     return gMeme.lines[num].txt
 }
 
-function getTxtColor() {
-    return gMeme.lines[gMeme.selectedLineIdx].color
+function getTxtColor(num = gMeme.selectedLineIdx) {
+    return gMeme.lines[num].color
 }
+
 
 function setLineColor(value) {
     gMeme.lines[gMeme.selectedLineIdx].color = value
     onChangeSetting()
 }
 
-function getLineSize() {
-    return gMeme.lines[gMeme.selectedLineIdx].size
+function getLineSize(num = gMeme.selectedLineIdx) {
+    return gMeme.lines[num].size
 }
 
 function getLineY(idx = gMeme.selectedLineIdx){
     return gMeme.lines[idx].lineY
+}
+
+function getLineX(idx = gMeme.selectedLineIdx){
+    return gMeme.lines[idx].lineX
 }
 
 function onImgSelect(id) {
@@ -105,4 +109,14 @@ function nextLine(){
 
 function gMemeLength() {
     return gMeme.lines.length
+}
+
+function changeY(num) {
+    num === 1? gMeme.lines[gMeme.selectedLineIdx].lineY += 5 : gMeme.lines[gMeme.selectedLineIdx].lineY -= 5
+    onChangeSetting()
+}
+
+function changeX(num) {
+    num === 1? gMeme.lines[gMeme.selectedLineIdx].lineX += 5 : gMeme.lines[gMeme.selectedLineIdx].lineX -= 5
+    onChangeSetting()
 }
