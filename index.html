@@ -7,17 +7,39 @@
     <title>meme page</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/gallery.css">
 </head>
 
-<body>
+<body onload="renderGallery()">
     <nav class="navbar">
         <a href="" class="logo">logo</a>
         <div>
-            <a href="image-gallery.html">Gallery</a>
+            <a onclick="toggleGallery()">Gallery</a>
             <a href="index.html">Editor</a>
         </div>
     </nav>
-
+    <div class="modal">
+        <section class="images">
+        <!-- <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <img src="img/5.jpg" alt="">
+        <img src="img/6.jpg" alt="">
+        <img src="img/7.jpg" alt="">
+        <img src="img/8.jpg" alt="">
+        <img src="img/9.jpg" alt="">
+        <img src="img/10.jpg" alt="">
+        <img src="img/11.jpg" alt="">
+        <img src="img/12.jpg" alt="">
+        <img src="img/13.jpg" alt="">
+        <img src="img/14.jpg" alt="">
+        <img src="img/15.jpg" alt="">
+        <img src="img/16.jpg" alt="">
+        <img src="img/17.jpg" alt="">
+        <img src="img/18.jpg" alt=""> -->
+    </section>
+</div>
     <section class="main-grid">
         <div>
         <canvas class="canvas canvas-img" height="400" width="400"></canvas>
@@ -56,9 +78,11 @@
 
         </form>
     </section>
+    
 
 
     <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
 
     <!-- <script>

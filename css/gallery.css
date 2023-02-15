@@ -1,7 +1,14 @@
 
+div.modal{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+}
 
 section.images{
     display: grid;
+    justify-content: center;
     /* grid-template-columns: repeat( auto-fit, minmax(200px, 400px)); */
     grid-template-columns: repeat( auto-fit, 200px);
     gap: 10px;
@@ -9,4 +16,7 @@ section.images{
 }
 img{
     width: 100%;
+}
+.hidden{
+    display: none;
 }

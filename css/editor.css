@@ -1,12 +1,13 @@
 
 body{
-    margin: 100px;
+    /* margin: 100px; */
 }
 
-section.main-grid{
+section.main-grid{/*make this good for changing screen sizes*/
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+    margin: 60px;
 }
 
 canvas{
