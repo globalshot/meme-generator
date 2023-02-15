@@ -12,7 +12,7 @@ nav.navbar{
     padding: 5px;
     background-color: aquamarine;
     justify-content: space-between;
-    padding-inline: 50px;
+    padding-inline: 70px;
     align-items: center;
 }
 .navbar div a{

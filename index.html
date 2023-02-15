@@ -7,7 +7,8 @@
     <title>meme page</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/editor.css">
-    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/gallery.css"> 
+    <link rel="stylesheet" href="css/mq.css"> 
 </head>
 
 <body onload="renderGallery()">
@@ -35,18 +36,18 @@
             <input id="text-line" type="text" placeholder="Text line">
             <br>
 
-            <input type="button" onclick="changeY(1)" value="move down"><!--move down line-->
-            <input type="button" onclick="changeY(-1)" value="move up"><!--move up line-->
-            <input type="button" onclick="changeX(-1)" value="move left"><!--move up line-->
-            <input type="button" onclick="changeX(1)" value="move right"><!--move down line-->
+            <input type="button" onclick="changeY(1)" value="&#8595;"><!--move down line-->
+            <input type="button" onclick="changeY(-1)" value="&#8593;"><!--move up line-->
+            <input type="button" onclick="changeX(-1)" value="&#8592;"><!--move up line-->
+            <input type="button" onclick="changeX(1)" value="&#8594;"><!--move down line-->
             <br>
-            <input type="button" onclick="lineFocus()" value="line focus"><!--change line focus-->
+            <input type="button" onclick="lineFocus()" value="&#8645;"><!--change line focus-->
             <input class="red" type="button" value="add line"><!--add line-->
             <input class="red" type="button" value="delete line"><!--delete line-->
             <br>
             
-            <input type="button" onclick="changeSize(1)" value="bigget text"><!--text bigger-->
-            <input type="button" onclick="changeSize(-1)" value="smaller text"><!--text smaller-->
+            <input type="button" onclick="changeSize(1)" value="A&#8593;"><!--text bigger-->
+            <input type="button" onclick="changeSize(-1)" value="A&#8595;"><!--text smaller-->
             <input class="red" type="button" value="aligment left"><!--allgment left-->
             <input class="red" type="button" value="aligment center"><!--aligment center-->
             <input class="red" type="button" value="aligment right"><!--aligment right-->

@@ -1,0 +1,19 @@
+
+
+
+@media(max-width: 700px){
+    section.main-grid {
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+        'canvas canvas' 
+        'tools tools';
+        row-gap: 150px;
+        column-count: auto;
+        /* 'canvas canvas' 
+        'tools tools'; */
+    }
+    canvas{
+        max-height: 330px;
+        max-width: 330px;
+    }
+}

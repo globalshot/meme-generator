@@ -2,6 +2,7 @@
 div.modal{
     position: absolute;
     width: 98vw;
+    height: 90%;
     z-index: 1;
     background-color: white;
 }
@@ -11,7 +12,7 @@ section.images{
     display: grid;
     justify-content: center;
     /* grid-template-columns: repeat( auto-fit, minmax(200px, 400px)); */
-    grid-template-columns: repeat( auto-fit, 200px);
+    grid-template-columns: repeat( auto-fit, minmax(100px, 200px));
     gap: 10px;
     /* grid-auto-flow: row; */
 }
