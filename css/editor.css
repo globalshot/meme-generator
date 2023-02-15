@@ -1,15 +1,21 @@
-
-
-
-section.main-grid{/*make this good for changing screen sizes*/
+section.main-grid {
+    /*make this good for changing screen sizes*/
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
     gap: 40px;
     margin: 60px;
 }
 
-canvas{
+div.canvas-container{
+    position: relative;
+    height: minmax(43.1vw, 100vh);
+}
+
+canvas {
     position: absolute;
     /* background-color: rgb(199, 106, 106); */
     border: 2px solid green;
+    height: 100%;
+    width: 100%;
 }

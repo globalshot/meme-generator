@@ -1,12 +1,13 @@
 
 div.modal{
     position: absolute;
-    width: 100%;
+    width: 98vw;
     z-index: 1;
     background-color: white;
 }
 
 section.images{
+    margin: 0;
     display: grid;
     justify-content: center;
     /* grid-template-columns: repeat( auto-fit, minmax(200px, 400px)); */

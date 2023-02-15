@@ -18,3 +18,8 @@ nav.navbar{
 .navbar div a{
     margin-left: 20px;
 }
+
+
+.red{
+    background-color: red;
+}
