@@ -110,3 +110,33 @@ function showOtherLines(id) {//idk if i need id
 //canvas 1- photo
 //canvas 2- the now 1 line edited
 //canvas 3- the all other lines saved and displaying, except the line in canvas 2
+
+
+
+function downloadCanvas(elLink) {
+
+    var gElCanvasDownload = document.querySelector('.canvas-download')
+    var gCtxDownload = gElCanvasDownload.getContext('2d')
+
+    gCtxDownload.clearRect(0, 0, gElCanvasDownload.width, gElCanvasDownload.height);
+    let img = new Image()
+    // gCtx.beginPath()
+    img.addEventListener('load', (event) => {gCtxDownload.drawImage(img, 0, 0, gElCanvasDownload.width, gElCanvasDownload.height)})
+    img.src = getCurrImg()
+
+    for (let i = 0; i < gMemeLength(); i++) {
+        gCtxDownload.beginPath()
+        setLineTxt(getLineTxt(i))
+        var stringTitle = getLineTxt(i)
+        gCtxDownload.fillStyle = getTxtColor(i)
+        gCtxDownload.font = `${getLineSize(i)}px ${font}`;
+        gCtxDownload.fillText(stringTitle, getLineX(i), getLineY(i))
+        gCtxDownload.closePath()
+    }
+    
+    // Gets the canvas content and convert it to base64 data URL that can be save as an image
+    const data = gElCanvasDownload.toDataURL() // Method returns a data URL containing a representation of the image in the format specified by the type parameter.
+    // console.log('data', data) // Decoded the image to base64
+    elLink.href = data // Put it on the link
+    elLink.download = 'my-img' // Can change the name of the file
+}

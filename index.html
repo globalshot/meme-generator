@@ -28,6 +28,7 @@
         <!-- <canvas class="canvas canvas-img"></canvas>
         <canvas class="canvas canvas-text"></canvas>
         <canvas class="canvas canvas-saved"></canvas> -->
+        <canvas class="canvas canvas-download" height="400" width="400"></canvas>
         <canvas class="canvas canvas-img" height="400" width="400"></canvas>
         <canvas class="canvas canvas-text" height="400" width="400"></canvas>
         <canvas class="canvas canvas-saved" height="400" width="400"></canvas>
@@ -64,8 +65,8 @@
             <!-- stickers -->
 
             <input class="red" type="button" value="share"><!--share-->
-            <input class="red" type="button" value="download"><!--download-->
-
+            <!-- <input class="red" type="button" value="download">download -->
+            <a href="#" class="red" onclick="downloadCanvas(this)" download="file-name">Download</a>
             <p>red colored dont work yet</p>
         </form>
     </section>
@@ -76,11 +77,11 @@
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
 
-    <!-- <script>
-        document.getElementById("form").addEventListener("click", function(event){
-          event.preventDefault()
-        });
-        </script> -->
+    <!-- for tomorrow. continue with layout, make the delete cause its splice,
+    add line is just new object in array, make is default something,
+    fix this download problem. where no photo its normal, and with its
+    htm or something, but more visual, bonuses you less need, ofc
+    you can do few, but still. you dont need to, -->
 </body>
 
 </html>
