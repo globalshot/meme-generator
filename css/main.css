@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
+nav.navbar{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    padding: 5px;
+    background-color: aquamarine;
+    justify-content: space-between;
+    padding-inline: 50px;
+    align-items: center;
+}
+.navbar div a{
+    margin-left: 20px;
+}

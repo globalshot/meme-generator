@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meme page</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="" class="logo">logo</a>
+        <div>
+            <a href="image-gallery.html">Gallery</a>
+            <a href="index.html">Editor</a>
+        </div>
+    </nav>
+
+    <section class="main-grid">
+        <div>
+        <canvas class="canvas canvas-img" height="400" width="400"></canvas>
+        <canvas class="canvas canvas-text" height="400" width="400"></canvas>
+        </div>
+        <form id="form" onsubmit="return false;">
+            <input id="text-line" type="text" placeholder="Text line">
+            <br>
+
+            <input type="button" value="move down"><!--move down line-->
+            <input type="button" value="move up"><!--move up line-->
+            <input type="button" value="line focus"><!--change line focus-->
+            <input type="button" value="add line"><!--add line-->
+            <input type="button" value="delete line"><!--delete line-->
+            <br>
+            
+            <input type="button" value="bigget text"><!--text bigger-->
+            <input type="button" value="smaller text"><!--text smaller-->
+            <input type="button" value="aligment left"><!--allgment left-->
+            <input type="button" value="aligment center"><!--aligment center-->
+            <input type="button" value="aligment right"><!--aligment right-->
+            <br>
+            <!-- <select onchange="onSetLang(this.value)"> -->
+            <select onchange="console.log(this.value)">
+                <option value="en">English</option>
+                <option value="he">עברית</option>
+            </select>
+            <input type="button" value="border size?"><!--text border size?-->
+            <input type="button" value="color"><!--color-->
+            <br>
+
+            <!-- stickers -->
+
+            <input type="button" value="share"><!--share-->
+            <input type="button" value="download"><!--download-->
+
+        </form>
+    </section>
+
+
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+
+    <!-- <script>
+        document.getElementById("form").addEventListener("click", function(event){
+          event.preventDefault()
+        });
+        </script> -->
+</body>
+
+</html>
+
+<!-- idk about github, that gonna overload pc i guess and i kinda hate the idea -->

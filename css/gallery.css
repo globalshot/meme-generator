@@ -1,0 +1,12 @@
+
+
+section.images{
+    display: grid;
+    /* grid-template-columns: repeat( auto-fit, minmax(200px, 400px)); */
+    grid-template-columns: repeat( auto-fit, 200px);
+    gap: 10px;
+    /* grid-auto-flow: row; */
+}
+img{
+    width: 100%;
+}

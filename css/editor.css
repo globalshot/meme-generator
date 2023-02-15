@@ -1,0 +1,16 @@
+
+body{
+    margin: 100px;
+}
+
+section.main-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+canvas{
+    position: absolute;
+    /* background-color: rgb(199, 106, 106); */
+    border: 2px solid green;
+}
