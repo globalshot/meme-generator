@@ -29,7 +29,15 @@ var gMeme = {
                 txt: 'I sometimes eat Falafel', 
                 size: 20, 
                 align: 'left', 
-                color: 'red' 
+                color: 'red',
+                lineY: 35,
+            },
+            { 
+                txt: '2nd line', 
+                size: 20, 
+                align: 'left', 
+                color: 'red',
+                lineY: 350,
             } 
     ] 
 }
@@ -40,6 +48,7 @@ function getImages() {
 
 
 function getCurrImg() {
+    //i guess i gotta add there if, if the image uploaded, then something else do
     return  `img/${gMeme.selectedImgId}.jpg`
     // return gMeme.selectedImgId
 }
@@ -53,12 +62,25 @@ function getLineTxt() {
     return gMeme.lines[gMeme.selectedLineIdx].txt
 }
 
-function getLineColor() {
+function getSpecificTxt(num) {
+    return gMeme.lines[num].txt
+}
+
+function getTxtColor() {
     return gMeme.lines[gMeme.selectedLineIdx].color
+}
+
+function setLineColor(value) {
+    gMeme.lines[gMeme.selectedLineIdx].color = value
+    onChangeSetting()
 }
 
 function getLineSize() {
     return gMeme.lines[gMeme.selectedLineIdx].size
+}
+
+function getLineY(idx = gMeme.selectedLineIdx){
+    return gMeme.lines[idx].lineY
 }
 
 function onImgSelect(id) {
@@ -66,4 +88,21 @@ function onImgSelect(id) {
     gMeme.selectedLineIdx = 0
     renderMeme()
     toggleGallery()
+}
+
+function changeSize(num) {
+    num === 1? gMeme.lines[gMeme.selectedLineIdx].size++ : gMeme.lines[gMeme.selectedLineIdx].size--
+    onChangeSetting()
+    return
+}
+
+function nextLine(){
+    gMeme.selectedLineIdx+1 === gMeme.lines.length? gMeme.selectedLineIdx=0 : gMeme.selectedLineIdx++
+    document.getElementById('text-line').value = gMeme.lines[gMeme.selectedLineIdx].txt
+    showOtherLines(gMeme.selectedLineIdx)
+    onChangeSetting()
+}//i gotta make it render all the lines. and in the x y they were at
+
+function gMemeLength() {
+    return gMeme.lines.length
 }

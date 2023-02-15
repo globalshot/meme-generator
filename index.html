@@ -18,32 +18,15 @@
             <a href="index.html">Editor</a>
         </div>
     </nav>
-    <div class="modal">
+    <div class="modal hidden">
         <section class="images">
-        <!-- <img src="img/1.jpg" alt="">
-        <img src="img/2.jpg" alt="">
-        <img src="img/3.jpg" alt="">
-        <img src="img/4.jpg" alt="">
-        <img src="img/5.jpg" alt="">
-        <img src="img/6.jpg" alt="">
-        <img src="img/7.jpg" alt="">
-        <img src="img/8.jpg" alt="">
-        <img src="img/9.jpg" alt="">
-        <img src="img/10.jpg" alt="">
-        <img src="img/11.jpg" alt="">
-        <img src="img/12.jpg" alt="">
-        <img src="img/13.jpg" alt="">
-        <img src="img/14.jpg" alt="">
-        <img src="img/15.jpg" alt="">
-        <img src="img/16.jpg" alt="">
-        <img src="img/17.jpg" alt="">
-        <img src="img/18.jpg" alt=""> -->
     </section>
 </div>
     <section class="main-grid">
         <div>
         <canvas class="canvas canvas-img" height="400" width="400"></canvas>
         <canvas class="canvas canvas-text" height="400" width="400"></canvas>
+        <canvas class="canvas canvas-saved" height="400" width="400"></canvas>
         </div>
         <form id="form" onsubmit="return false;">
             <input id="text-line" type="text" placeholder="Text line">
@@ -51,13 +34,13 @@
 
             <input type="button" value="move down"><!--move down line-->
             <input type="button" value="move up"><!--move up line-->
-            <input type="button" value="line focus"><!--change line focus-->
+            <input type="button" onclick="lineFocus()" value="line focus"><!--change line focus-->
             <input type="button" value="add line"><!--add line-->
             <input type="button" value="delete line"><!--delete line-->
             <br>
             
-            <input type="button" value="bigget text"><!--text bigger-->
-            <input type="button" value="smaller text"><!--text smaller-->
+            <input type="button" onclick="changeSize(1)" value="bigget text"><!--text bigger-->
+            <input type="button" onclick="changeSize(-1)" value="smaller text"><!--text smaller-->
             <input type="button" value="aligment left"><!--allgment left-->
             <input type="button" value="aligment center"><!--aligment center-->
             <input type="button" value="aligment right"><!--aligment right-->
@@ -68,7 +51,7 @@
                 <option value="he">עברית</option>
             </select>
             <input type="button" value="border size?"><!--text border size?-->
-            <input type="button" value="color"><!--color-->
+            <input type="color" onchange="setLineColor((this.value))"><!--color-->
             <br>
 
             <!-- stickers -->
