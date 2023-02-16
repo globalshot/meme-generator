@@ -23,3 +23,9 @@ nav.navbar{
 .red{
     background-color: red;
 }
+
+footer.footer{
+    position: absolute;
+    bottom: 0;
+    background-color: aquamarine;
+}

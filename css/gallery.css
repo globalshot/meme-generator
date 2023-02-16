@@ -5,7 +5,6 @@ div.modal{
     height: 90%;
     z-index: 1;
     background-color: white;
-    transition: 1s;
 }
 
 section.images{
@@ -15,7 +14,6 @@ section.images{
     /* grid-template-columns: repeat( auto-fit, minmax(200px, 400px)); */
     grid-template-columns: repeat( auto-fit, minmax(100px, 200px));
     gap: 10px;
-    transition: 1s;
     /* grid-auto-flow: row; */
 }
 img{

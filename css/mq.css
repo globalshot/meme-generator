@@ -9,11 +9,23 @@
         'tools tools';
         row-gap: 150px;
         column-count: auto;
+        max-height: 100%;
+        min-width: min-content;
+        margin-left: 20px;
+        margin-right: 20px;
         /* 'canvas canvas' 
         'tools tools'; */
     }
     canvas{
         max-height: 330px;
         max-width: 330px;
+    }
+}
+
+@media(max-width: 350px){
+    section.main-grid {
+        row-gap: 30vw;
+        /* row-gap: 75px; */
+        translate: 0, 50%;
     }
 }

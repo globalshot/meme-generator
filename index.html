@@ -19,7 +19,7 @@
             <a href="index.html">Editor</a><!--that suppose to be about, so yeah-->
         </div>
     </nav>
-    <div class="modal hidden">
+    <div class="modal">
         <section class="images">
     </section>
 </div>
@@ -34,7 +34,8 @@
         <canvas class="canvas canvas-saved" height="400" width="400"></canvas>
         </div>
         <form id="form" onsubmit="return false;">
-            <input id="text-line" type="text" placeholder="Text line">
+            <!-- <input id="text-line" type="text" placeholder="Text line"> -->
+            <textarea id="text-line" name="story" rows="5" cols="33"></textarea>
             <br>
 
             <input type="button" onclick="changeY(1)" value="&#8595;"><!--move down line-->
@@ -43,22 +44,22 @@
             <input type="button" onclick="changeX(1)" value="&#8594;"><!--move down line-->
             <br>
             <input type="button" onclick="lineFocus()" value="&#8645;"><!--change line focus-->
-            <input class="red" type="button" value="add line"><!--add line-->
-            <input class="red" type="button" value="delete line"><!--delete line-->
+            <input type="button" onclick="onLineAdd()" value="add line"><!--add line-->
+            <input type="button" onclick="onLineDelete()" value="delete line"><!--delete line-->
             <br>
             
             <input type="button" onclick="changeSize(1)" value="A&#8593;"><!--text bigger-->
             <input type="button" onclick="changeSize(-1)" value="A&#8595;"><!--text smaller-->
-            <input class="red" type="button" value="aligment left"><!--allgment left-->
-            <input class="red" type="button" value="aligment center"><!--aligment center-->
-            <input class="red" type="button" value="aligment right"><!--aligment right-->
+            <input class="red" type="button" onclick="onChangeAlignment('right')" value="aligment left"><!--allgment left-->
+            <input class="red" type="button" onclick="onChangeAlignment('center')" value="aligment center"><!--aligment center-->
+            <input class="red" type="button" onclick="onChangeAlignment('left')" value="aligment right"><!--aligment right-->
             <br>
             <!-- <select onchange="onSetLang(this.value)"> -->
-            <select class="red" onchange="console.log(this.value)">
+            <!-- <select class="red" onchange="console.log(this.value)">
                 <option value="en">English</option>
                 <option value="he">עברית</option>
-            </select>
-            <input class="red" type="button" value="border size?"><!--text border size?-->
+            </select> -->
+            <!-- <input class="red" type="button" value="border size?">text border size? -->
             <input id="color-btn" type="color" onchange="setLineColor((this.value))"><!--color-->
             <br>
 
@@ -71,14 +72,14 @@
         </form>
     </section>
     
+    <footer class="footer">all right reserved 2023</footer>
 
-
+    <script src="js/services/storage-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
 
-    <!-- for tomorrow. continue with layout, make the delete cause its splice,
-    add line is just new object in array, make is default something,
+    <!-- 
     fix this download problem. where no photo its normal, and with its
     htm or something, but more visual, bonuses you less need, ofc
     you can do few, but still. you dont need to, -->

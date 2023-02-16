@@ -33,14 +33,14 @@ var gMeme = {
                 lineY: 35,
                 lineX: 30
             },
-            { 
-                txt: '2nd line', 
-                size: 20, 
-                align: 'left', 
-                color: '#000000',
-                lineY: 350,
-                lineX: 30
-            } 
+            // { 
+            //     txt: '2nd line', 
+            //     size: 20, 
+            //     align: 'left', 
+            //     color: '#000000',
+            //     lineY: 350,
+            //     lineX: 30
+            // } 
     ] 
 }
 
@@ -100,8 +100,17 @@ function changeSize(num) {
     return
 }
 
+function changeAlignment(side) {
+    gMeme.lines[gMeme.selectedLineIdx].align = side
+    onChangeSetting()
+}
+
+function getTextAlignment(idx = gMeme.selectedLineIdx) {
+    return gMeme.lines[idx].align
+}
+
 function nextLine(){
-    gMeme.selectedLineIdx+1 === gMeme.lines.length? gMeme.selectedLineIdx=0 : gMeme.selectedLineIdx++
+    gMeme.selectedLineIdx+1 >= gMeme.lines.length? gMeme.selectedLineIdx=0 : gMeme.selectedLineIdx++
     document.getElementById('text-line').value = gMeme.lines[gMeme.selectedLineIdx].txt
     showOtherLines(gMeme.selectedLineIdx)
     onChangeSetting()
@@ -119,4 +128,23 @@ function changeY(num) {
 function changeX(num) {
     num === 1? gMeme.lines[gMeme.selectedLineIdx].lineX += 5 : gMeme.lines[gMeme.selectedLineIdx].lineX -= 5
     onChangeSetting()
+}
+
+function makeNewLine() {
+    let newLine = { 
+        txt: 'new line', 
+        size: 20, 
+        align: 'left', 
+        color: '#000000',
+        lineY: 150,
+        lineX: 30
+    }
+    gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    showOtherLines(gMeme.selectedLineIdx)
+    
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
