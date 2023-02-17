@@ -26,21 +26,13 @@ var gMeme = {
     selectedLineIdx: 0, 
     lines: [ 
             { 
-                txt: 'I sometimes eat Falafel', 
+                txt: '', 
                 size: 20, 
                 align: 'left', 
                 color: '#000000',
                 lineY: 35,
                 lineX: 30
             },
-            // { 
-            //     txt: '2nd line', 
-            //     size: 20, 
-            //     align: 'left', 
-            //     color: '#000000',
-            //     lineY: 350,
-            //     lineX: 30
-            // } 
     ] 
 }
 
@@ -104,6 +96,29 @@ function changeAlignment(side) {
     gMeme.lines[gMeme.selectedLineIdx].align = side
     onChangeSetting()
 }
+
+// function changeAlignment(side) {
+//     const line = gMeme.lines[gMeme.selectedLineIdx]
+//     line.align = side;
+  
+//     const lineSize = gCtxText.measureText(line.txt).width
+//     const canvasWidth = gElCanvasText.width
+//     switch (line.align) {
+//         case 'left':
+//             line.x = line.lineX;
+//             break;
+//         case 'center':
+//             line.x = (canvasWidth / 2) - (lineSize / 2);
+//             break;
+//         case 'right':
+//             line.x = canvasWidth - lineSize - 10;
+//             break;
+//         default:
+//             break;
+//     }
+
+//     onChangeSetting();
+// }
 
 function getTextAlignment(idx = gMeme.selectedLineIdx) {
     return gMeme.lines[idx].align

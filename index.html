@@ -35,7 +35,7 @@
         </div>
         <form id="form" onsubmit="return false;">
             <!-- <input id="text-line" type="text" placeholder="Text line"> -->
-            <textarea id="text-line" name="story" rows="5" cols="33"></textarea>
+            <textarea id="text-line" name="story" rows="5" cols="33" placeholder="enter text"></textarea>
             <br>
 
             <input type="button" onclick="changeY(1)" value="&#8595;"><!--move down line-->
@@ -50,9 +50,9 @@
             
             <input type="button" onclick="changeSize(1)" value="A&#8593;"><!--text bigger-->
             <input type="button" onclick="changeSize(-1)" value="A&#8595;"><!--text smaller-->
-            <input class="red" type="button" onclick="onChangeAlignment('right')" value="aligment left"><!--allgment left-->
+            <input class="red" type="button" onclick="onChangeAlignment('left')" value="aligment left"><!--allgment left-->
             <input class="red" type="button" onclick="onChangeAlignment('center')" value="aligment center"><!--aligment center-->
-            <input class="red" type="button" onclick="onChangeAlignment('left')" value="aligment right"><!--aligment right-->
+            <input class="red" type="button" onclick="onChangeAlignment('right')" value="aligment right"><!--aligment right-->
             <br>
             <!-- <select onchange="onSetLang(this.value)"> -->
             <!-- <select class="red" onchange="console.log(this.value)">
@@ -65,9 +65,10 @@
 
             <!-- stickers -->
 
-            <input class="red" type="button" value="share"><!--share-->
-            <!-- <input class="red" type="button" value="download">download -->
-            <a href="#" class="red" onclick="downloadCanvas(this)">Download</a>
+            <input type="file" id="img-upload">
+            <br>
+            <input class="red" type="button" value="share" onclick="onUploadImg()"><!--share-->
+            <a href="#" onclick="downloadCanvas(this)">Download</a>
             <p>red colored dont work yet</p>
         </form>
     </section>
@@ -78,6 +79,7 @@
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
+    <script src="js/sharing-on-facebook.js"></script>
 
     <!-- 
     fix this download problem. where no photo its normal, and with its
