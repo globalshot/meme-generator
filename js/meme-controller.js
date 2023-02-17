@@ -130,30 +130,75 @@ function showOtherLines(id) {//idk if i need id
 
 
 
-function downloadCanvas(elLink) {
+// function downloadCanvas(elLink) {
 
-    var gElCanvasDownload = document.querySelector('.canvas-download')
-    var gCtxDownload = gElCanvasDownload.getContext('2d')
+//     var gElCanvasDownload = document.querySelector('.canvas-download')
+//     var gCtxDownload = gElCanvasDownload.getContext('2d')
 
-    gCtxDownload.clearRect(0, 0, gElCanvasDownload.width, gElCanvasDownload.height)
-    let img = new Image()
-    // gCtx.beginPath()
-    img.addEventListener('load', (event) => { gCtxDownload.drawImage(img, 0, 0, gElCanvasDownload.width, gElCanvasDownload.height) })
-    img.src = getCurrImg()
+//     gCtxDownload.clearRect(0, 0, gElCanvasDownload.width, gElCanvasDownload.height)
+//     let img = new Image()
+//     // gCtx.beginPath()
+//     img.addEventListener('load', (event) => { gCtxDownload.drawImage(img, 0, 0, gElCanvasDownload.width, gElCanvasDownload.height) 
+//         for (let i = 0; i < gMemeLength(); i++) {
+//             gCtxDownload.beginPath()
+//             setLineTxt(getLineTxt(i))
+//             var stringTitle = getLineTxt(i)
+//             gCtxDownload.fillStyle = getTxtColor(i)
+//             gCtxDownload.font = `${getLineSize(i)}px ${font}`
+//             gCtxDownload.fillText(stringTitle, getLineX(i), getLineY(i))
+//             gCtxDownload.closePath()
+//         }
+//         const data = gElCanvasDownload.toDataURL("image/png");
+//         elLink.href = data;
+//         elLink.download = 'my-img.png';
+//         console.log('gElCanvasDownload',gElCanvasDownload);
+//         console.log('gCtxDownload',gCtxDownload);
+//         console.log('getCurrImg()',getCurrImg());
+//         })
+//     img.src = getCurrImg()
 
-    for (let i = 0; i < gMemeLength(); i++) {
-        gCtxDownload.beginPath()
-        setLineTxt(getLineTxt(i))
-        var stringTitle = getLineTxt(i)
-        gCtxDownload.fillStyle = getTxtColor(i)
-        gCtxDownload.font = `${getLineSize(i)}px ${font}`
-        gCtxDownload.fillText(stringTitle, getLineX(i), getLineY(i))
-        gCtxDownload.closePath()
-    }
+    
 
-    // Gets the canvas content and convert it to base64 data URL that can be save as an image
-    const data = gElCanvasDownload.toDataURL() // Method returns a data URL containing a representation of the image in the format specified by the type parameter.
-    // console.log('data', data) // Decoded the image to base64
-    elLink.href = data // Put it on the link
-    elLink.download = 'my-img' // Can change the name of the file
-}
+//     // Gets the canvas content and convert it to base64 data URL that can be save as an image
+//     // const data = gElCanvasDownload.toDataURL() // Method returns a data URL containing a representation of the image in the format specified by the type parameter.
+//     // console.log('data', data) // Decoded the image to base64
+//     // elLink.href = data // Put it on the link
+//     // elLink.download = 'my-img' // Can change the name of the file
+
+    
+// }
+
+function downloadCanvas() {
+    var gElCanvasDownload = document.querySelector('.canvas-download');
+    var gCtxDownload = gElCanvasDownload.getContext('2d');
+    
+    gCtxDownload.clearRect(0, 0, gElCanvasDownload.width, gElCanvasDownload.height);
+    
+    let img = new Image();
+    img.addEventListener('load', function() {
+      gCtxDownload.drawImage(img, 0, 0, gElCanvasDownload.width, gElCanvasDownload.height);
+      
+      for (let i = 0; i < gMemeLength(); i++) {
+        gCtxDownload.beginPath();
+        setLineTxt(getLineTxt(i));
+        var stringTitle = getLineTxt(i);
+        gCtxDownload.fillStyle = getTxtColor(i);
+        gCtxDownload.font = `${getLineSize(i)}px ${font}`;
+        gCtxDownload.fillText(stringTitle, getLineX(i), getLineY(i));
+        gCtxDownload.closePath();
+      }
+      
+      // Get the data URL of the canvas image
+      var dataURL = gElCanvasDownload.toDataURL("image/png");
+      
+      // Create a link and trigger a download of the canvas image
+      var link = document.createElement('a');
+      link.download = 'my-img.png';
+      link.href = dataURL;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+    
+    img.src = 'img/4.jpg';
+  }
