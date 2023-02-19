@@ -55,7 +55,7 @@ function onImgInput(ev) {
     reader.readAsDataURL(file)
 }
 
-document.querySelector('textarea.text-line').addEventListener('keydown', onChangeSetting)
+document.querySelector('textarea.text-line').addEventListener('input', onChangeSetting)
 
 function onChangeSetting() {
     gCtxText.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height)
