@@ -35,7 +35,7 @@
         </div>
         <form id="form" onsubmit="return false;">
             <!-- <input id="text-line" type="text" placeholder="Text line"> -->
-            <textarea id="text-line" name="story" rows="5" cols="33" placeholder="enter text"></textarea>
+            <textarea class="text-line" name="story" rows="5" cols="33" placeholder="enter text"></textarea>
             <br>
 
             <input type="button" onclick="changeY(1)" value="&#8595;"><!--move down line-->
@@ -60,12 +60,12 @@
                 <option value="he">עברית</option>
             </select> -->
             <!-- <input class="red" type="button" value="border size?">text border size? -->
-            <input id="color-btn" type="color" onchange="setLineColor((this.value))"><!--color-->
+            <input class="color-btn" type="color" onchange="setLineColor((this.value))"><!--color-->
             <br>
-
+            
             <!-- stickers -->
 
-            <input type="file" id="img-upload">
+            <input type="file" class="img-upload">
             <br>
             <input class="red" type="button" value="share" onclick="onUploadImg()"><!--share-->
             <a href="#" onclick="downloadCanvas(this)">Download</a>
