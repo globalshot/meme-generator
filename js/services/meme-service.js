@@ -90,8 +90,8 @@ function getLineX(idx = gMeme.selectedLineIdx){
 function onImgSelect(id) {
     gMeme.selectedImgId = id
     gMeme.selectedLineIdx = 0
-    renderMeme()
     toggleGallery()
+    renderMeme()
 }
 
 function changeSize(num) {
@@ -135,7 +135,7 @@ function getTextAlignment(idx = gMeme.selectedLineIdx) {
 function nextLine(){
     gMeme.selectedLineIdx+1 >= gMeme.lines.length? gMeme.selectedLineIdx=0 : gMeme.selectedLineIdx++
     document.querySelector('textarea.text-line').value = gMeme.lines[gMeme.selectedLineIdx].txt
-    showOtherLines(gMeme.selectedLineIdx)
+    // showOtherLines(gMeme.selectedLineIdx)
     onChangeSetting()
 }//i gotta make it render all the lines. and in the x y they were at
 
@@ -168,7 +168,7 @@ function makeNewLine() {
     }
     gMeme.lines.push(newLine)
     gMeme.selectedLineIdx = gMeme.lines.length - 1
-    showOtherLines(gMeme.selectedLineIdx)
+    onChangeSetting(gMeme.selectedLineIdx)
     
 }
 

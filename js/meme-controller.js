@@ -5,9 +5,6 @@ const gCtxImg = gElCanvasImg.getContext('2d')
 const gElCanvasText = document.querySelector('.canvas-text')
 const gCtxText = gElCanvasText.getContext('2d')
 
-const gElCanvasTextSaved = document.querySelector('.canvas-saved')
-const gCtxTextSaved = gElCanvasTextSaved.getContext('2d')
-
 const imgInput = document.querySelector('img-upload')
 
 
@@ -16,8 +13,8 @@ var font = 'sans-serif'
 // renderMeme()
 function renderMeme() {
     // newImgSelected(id)
-    toggleGallery()
-    gCtxImg.clearRect(0, 0, gElCanvasImg.width, gElCanvasImg.height)
+    // toggleGallery()
+    gCtxText.clearRect(0, 0, gElCanvasImg.width, gElCanvasImg.height)
     let img = new Image()
     img.addEventListener('load', (event) => { gCtxImg.drawImage(img, 0, 0, gElCanvasImg.width, gElCanvasImg.height) })
     img.src = getCurrImg()
@@ -43,7 +40,7 @@ function onChangeAlignment(side) {
     changeAlignment(side)
 }
 
-document.querySelector('input.img-upload').addEventListener('change', onImgInput)
+document.querySelector('input.img-upload').addEventListener('input', onImgInput)
 
 function onImgInput(ev) {
     const file = ev.target.files[0]
@@ -58,10 +55,13 @@ function onImgInput(ev) {
     reader.readAsDataURL(file)
 }
 
-document.querySelector('textarea.text-line').addEventListener('keyup', onChangeSetting)
+document.querySelector('textarea.text-line').addEventListener('keydown', onChangeSetting)
 
 function onChangeSetting() {
     gCtxText.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height)
+    // renderMeme()
+    showOtherLines(getCurrLineIdx())
+
     gCtxText.beginPath()
     setLineTxt(document.querySelector('textarea.text-line').value)
     document.querySelector('.color-btn').value = getTxtColor()
@@ -86,17 +86,16 @@ function onChangeSetting() {
     // Determine the height and position of the box
     const boxHeight = lineHeight * lines.length
     const boxTop = textY - boxHeight / 2 - 10
-    console.log(boxTop);//got idea for the outbound, like save
+    console.log(boxTop)//got idea for the outbound, like save
     //it and add to the drawing part. so it will be lower, box and the text
 
     // Draw the box
     gCtxText.strokeStyle = 'white'
     gCtxText.lineWidth = 3
-    gCtxText.strokeRect(getLineX()-10, boxTop, 270, boxHeight + 10)
+    gCtxText.strokeRect(getLineX() - 10, boxTop, 270, boxHeight + 10)
 
     // Draw each line of text separately
     drawLine(lineHeight, textY, lines)
-    // showOtherLines(getCurrLineIdx())
 }
 
 function drawLine(lineHeight, textY, lines) {
@@ -105,14 +104,14 @@ function drawLine(lineHeight, textY, lines) {
         const textYOffset = (i * lineHeight) - ((lines.length - 1) * lineHeight / 2)
         const textBottom = textY + textYOffset + lineHeight / 2
         gCtxText.fillStyle = line.color
-  
+
         // Only draw text if it is within canvas bounds
         if (textBottom > 0 && textBottom < gElCanvasText.height) {
-          gCtxText.font = `bold ${line.size}px ${font}`
-          gCtxText.fillText(line.text, getLineX(), textY + textYOffset)
+            gCtxText.font = `bold ${line.size}px ${font}`
+            gCtxText.fillText(line.text, getLineX(), textY + textYOffset)
         }
         gCtxText.closePath()
-      })
+    })
 }
 
 function seperateLines(words, maxWidth, lines) {
@@ -120,32 +119,41 @@ function seperateLines(words, maxWidth, lines) {
         var lineWords = []
         var lineWidth = 0
         while (words.length && lineWidth + gCtxText.measureText(words[0]).width <= maxWidth) {
-          lineWords.push(words.shift())
-          lineWidth += gCtxText.measureText(lineWords[lineWords.length - 1]).width
-          if (lineWidth < maxWidth && words.length) {
-            lineWidth += gCtxText.measureText(' ').width
-          }
+            lineWords.push(words.shift())
+            lineWidth += gCtxText.measureText(lineWords[lineWords.length - 1]).width
+            if (lineWidth < maxWidth && words.length) {
+                lineWidth += gCtxText.measureText(' ').width
+            }
         }
         lines.push({ text: lineWords.join(' '), color: getTxtColor(), size: getLineSize() })
-      }
+    }
 }
 
 function showOtherLines(id) {//idk if i need id, + need to make it show other lines
-    gCtxTextSaved.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height)
+    // gCtxTextSaved.clearRect(0, 0, gElCanvasText.width, gElCanvasText.height)
     for (let i = 0; i < gMemeLength(); i++) {
         if (i === id) continue
-        gCtxTextSaved.beginPath()
+        gCtxText.beginPath()
         setLineTxt(getLineTxt(i))
         var stringTitle = getLineTxt(i)
-        gCtxTextSaved.fillStyle = getTxtColor(i)
-        gCtxTextSaved.textAlign = getTextAlignment(i)
-        gCtxTextSaved.font = `${getLineSize(i)}px ${font}`
-        gCtxTextSaved.fillText(stringTitle, getLineX(i), getLineY(i))
+        gCtxText.fillStyle = getTxtColor(i)
+        gCtxText.textAlign = getTextAlignment(i)
+        gCtxText.font = `${getLineSize(i)}px ${font}`
+        // gCtxText.fillText(stringTitle, getLineX(i), getLineY(i))
+
+        var lines = []
+        var maxWidth = 250
+        var words = stringTitle.split(' ')
+        var lineHeight = getLineSize(i)
+        var textY = getLineY(i)
+        seperateLines(words, maxWidth, lines)
+        drawLine(lineHeight, textY, lines)
+
         gCtxText.closePath()
     }
 }
 
-function downloadCanvas() {
+function downloadCanvas() {//bug. when i donwload, it doesnt remember the added lines text, and just ignore the changes
     var gElCanvasDownload = document.querySelector('.canvas-download')
     var gCtxDownload = gElCanvasDownload.getContext('2d')
 
@@ -175,6 +183,8 @@ function downloadCanvas() {
         document.body.appendChild(link)
         link.click()
         document.body.removeChild(link)
+
+        gCtxDownload.clearRect(0, 0, gElCanvasDownload.width, gElCanvasDownload.height)
     })
 
     img.src = getCurrImg()
