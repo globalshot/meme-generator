@@ -80,18 +80,8 @@ function onChangeSetting() {
 
     var lines = []
     // split the string into multiple lines based on the maxWidth
-    while (words.length) {
-      var lineWords = []
-      var lineWidth = 0
-      while (words.length && lineWidth + gCtxText.measureText(words[0]).width <= maxWidth) {
-        lineWords.push(words.shift())
-        lineWidth += gCtxText.measureText(lineWords[lineWords.length - 1]).width
-        if (lineWidth < maxWidth && words.length) {
-          lineWidth += gCtxText.measureText(' ').width
-        }
-      }
-      lines.push({ text: lineWords.join(' '), color: getTxtColor(), size: getLineSize() })
-    }
+    //make functions for this
+    seperateLines(words, maxWidth, lines)
 
     // Determine the height and position of the box
     const boxHeight = lineHeight * lines.length
@@ -100,24 +90,44 @@ function onChangeSetting() {
     //it and add to the drawing part. so it will be lower, box and the text
 
     // Draw the box
-    gCtxText.strokeStyle = 'black'
+    gCtxText.strokeStyle = 'white'
     gCtxText.lineWidth = 3
     gCtxText.strokeRect(getLineX()-10, boxTop, 270, boxHeight + 10)
 
     // Draw each line of text separately
-    lines.forEach((line, i) => {
-      gCtxText.beginPath()
-      const textYOffset = (i * lineHeight) - ((lines.length - 1) * lineHeight / 2)
-      const textBottom = textY + textYOffset + lineHeight / 2
-      gCtxText.fillStyle = line.color
+    drawLine(lineHeight, textY, lines)
+    // showOtherLines(getCurrLineIdx())
+}
 
-      // Only draw text if it is within canvas bounds
-      if (textBottom > 0 && textBottom < gElCanvasText.height) {
-        gCtxText.font = `bold ${line.size}px ${font}`
-        gCtxText.fillText(line.text, getLineX(), textY + textYOffset)
+function drawLine(lineHeight, textY, lines) {
+    lines.forEach((line, i) => {
+        gCtxText.beginPath()
+        const textYOffset = (i * lineHeight) - ((lines.length - 1) * lineHeight / 2)
+        const textBottom = textY + textYOffset + lineHeight / 2
+        gCtxText.fillStyle = line.color
+  
+        // Only draw text if it is within canvas bounds
+        if (textBottom > 0 && textBottom < gElCanvasText.height) {
+          gCtxText.font = `bold ${line.size}px ${font}`
+          gCtxText.fillText(line.text, getLineX(), textY + textYOffset)
+        }
+        gCtxText.closePath()
+      })
+}
+
+function seperateLines(words, maxWidth, lines) {
+    while (words.length) {
+        var lineWords = []
+        var lineWidth = 0
+        while (words.length && lineWidth + gCtxText.measureText(words[0]).width <= maxWidth) {
+          lineWords.push(words.shift())
+          lineWidth += gCtxText.measureText(lineWords[lineWords.length - 1]).width
+          if (lineWidth < maxWidth && words.length) {
+            lineWidth += gCtxText.measureText(' ').width
+          }
+        }
+        lines.push({ text: lineWords.join(' '), color: getTxtColor(), size: getLineSize() })
       }
-      gCtxText.closePath()
-    })
 }
 
 function showOtherLines(id) {//idk if i need id, + need to make it show other lines

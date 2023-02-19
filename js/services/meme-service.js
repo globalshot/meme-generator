@@ -143,6 +143,10 @@ function gMemeLength() {
     return gMeme.lines.length
 }
 
+function getCurrLineIdx() {
+    return gMeme.selectedLineIdx
+}
+
 function changeY(num) {
     num === 1? gMeme.lines[gMeme.selectedLineIdx].lineY += 5 : gMeme.lines[gMeme.selectedLineIdx].lineY -= 5
     onChangeSetting()
